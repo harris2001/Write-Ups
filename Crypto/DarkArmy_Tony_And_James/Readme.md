@@ -1,8 +1,8 @@
 # Problem Description:
-We were provided with 64 encoded messages and the sourcecode used to generate them. The task was to siply decrypt the communication by knowing the first random number used (r0) which was given in the problem statement. 
+We were provided with 64 encoded messages and the source code used to generate them. The task was to simply decrypt the communication by knowing the first random number used (r0) which was given in the problem statement.
 
 ## Difficulty:
-This was a medium-diffuculty Crypto challenge solved by 45/665 teams
+This was a medium-difficulty Crypto challenge solved by 45/665 teams
 
 ## The code:
 ```python
@@ -64,9 +64,11 @@ encoded[0] = 17e5b42a8bea57da669427727314c1b5b50a7c11135d48d87fac2aa91c1e96a62c3
 r[0] = 1251602129774106047963344349716052246200810608622833524786816688818258541877890956410282953590226589114551287285264273581561051261152783001366229253687592
 
 raw[0] = encoded[0] ^ r[0] ^ m[0]
-            ^	          ^    ^	
-            |		        |    |
+            ^	        ^    ^	
+            |		|    |
       We have all these values thus we can caluclate raw[0]
+
+We xor r[0] with the first message (encoded[0]) and first letter of our flag (format darkCTF{} -> 'd')
 
 => raw[0] = 1251602129774106047963344349716052246200810608622833524786816688818258541877890956410282953590226589114551287285264273581561051261152788396719615239763762 ^ 1251602129774106047963344349716052246200810608622833524786816688818258541877890956410282953590226589114551287285264273581561051261152783001366229253687592 ^ ord('d')
 
@@ -74,9 +76,9 @@ raw[0] = encoded[0] ^ r[0] ^ m[0]
 
 2) We can find the seed
 
-=> seed = raw[0]-1 = 8926184294774128253
+seed = raw[0]-1 = 8926184294774128253
 
-3) We slightly modify the code and we get the flag
+3) Now that we know the initial seed, we can modify the code slightly and we get the flag
 
 ```python
 testing = []
