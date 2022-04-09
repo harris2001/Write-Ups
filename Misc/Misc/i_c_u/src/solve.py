@@ -36,30 +36,32 @@ im1.save('../img1-modified.png')
 image1 = open("../img1-modified.png", 'rb').read()
 image2 = open("../img2-modified.png", 'rb').read()
 
-printing(image1)
-printing(image2)
+### Uncomment for offline run
+
+# printing(image1)
+# printing(image2)
 
 
-# r = remote("icu.chal.pwni.ng",1337)
+r = remote("icu.chal.pwni.ng",1337)
 
-# comm = str(r.recv())[2:-3].split(" ")[2]
-# print(">>>>>"+comm)
-# hashcash = check_output(["hashcash", "-qmb24", comm])
-# out = hashcash
-# print("Sending ")
-# print(out)
-#
-# r.send(hashcash)
-# out = r.recv()
-# print(f"[Received]:{out}")
-# print(f"[Sending]:{base64.b64encode(image1)}")
-# r.send(base64.b64encode(image1))
-# r.send(b'\n')
-# out = r.recv()
-# print(out)
-# print(f"[Sending]:{base64.b64encode(image2)}")
-# r.send(base64.b64encode(image2))
-# r.send('\n')
-# r.interactive()
+comm = str(r.recv())[2:-3].split(" ")[2]
+print(">>>>>"+comm)
+hashcash = check_output(["hashcash", "-qmb24", comm])
+out = hashcash
+print("Sending ")
+print(out)
+
+r.send(hashcash)
+out = r.recv()
+print(f"[Received]:{out}")
+print(f"[Sending]:{base64.b64encode(image1)}")
+r.send(base64.b64encode(image1))
+r.send(b'\n')
+out = r.recv()
+print(out)
+print(f"[Sending]:{base64.b64encode(image2)}")
+r.send(base64.b64encode(image2))
+r.send('\n')
+r.interactive()
 
 
